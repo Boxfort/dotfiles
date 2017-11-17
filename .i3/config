@@ -144,9 +144,9 @@ client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color	   #00
 bindsym Mod4+Shift+o exec lock
 
 # Pulse Audio controls
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%- #increase sound volume
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+ #decrease sound volume
-bindsym XF86AudioMute        exec amixer -D pulse sset Master 1+ toggle # mute sound
+bindsym XF86AudioLowerVolume exec amixer set Master 5%- #increase sound volume
+bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ #decrease sound volume
+bindsym XF86AudioMute        exec amixer set Master 1+ toggle # mute sound
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
@@ -154,6 +154,17 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightne
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Capslock Indicator
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+
+# No Borders
+new_window 1pixel
+hide_edge_borders vertical
+for_window [class="Chromium"] border pixel 1
+for_window [class="Firefox"] border pixel 1
+for_window [class="nvim"] border pixel 1
+for_window [class="URxvt"] border pixel 1
 
 #Start i3bar
 
@@ -215,5 +226,3 @@ bindsym Mod4+r mode "resize"
 # Please remove the following exec line:
 #######################################################################
 exec i3-config-wizard
-exec compton
-exec feh --bg-scale ~/Pictures/wp.jpg
