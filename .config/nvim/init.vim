@@ -7,6 +7,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-syntastic/syntastic'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'lervag/vimtex'
+Plug 'dbgx/lldb.nvim', {'do': ':UpdateRemotePlugins'}
+Plug 'vim-latex/vim-latex'
+Plug 'dracula/vim'
 call plug#end()
 
 call deoplete#enable()
@@ -23,3 +27,4 @@ let g:gitgutter_sign_column_always = 0
 set rnu
 set number
 set list
+color dracula
