@@ -13,7 +13,7 @@ BLUE=\033[0;34m
 	@echo "Installing packages..."
 	@sudo apt -y install curl wget zsh python3 python3-pip htop neofetch neovim build-essential cmake python3-dev rxvt-unicode
 
-	@sudo update-alternatives --set x-terminal-emulator $(which urxvt)
+	@sudo update-alternatives --set x-terminal-emulator $$(which urxvt)
 
 	@pip3 install neovim
 	@curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -22,7 +22,7 @@ BLUE=\033[0;34m
 	@sh -c "$$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" | true
 	@echo "Changing default shell to zsh"
 	@chsh -s $$(which zsh)
-	@rm ~/.zshrc
+	@rm ~/.zshrc || true
 
 	@echo "Installing Rust"
 	@sudo curl https://sh.rustup.rs -sSf | sh
@@ -46,7 +46,6 @@ BLUE=\033[0;34m
 
 install:
 	@echo "Applying config"
-	# When zsh installs it creates .zshrc which will make stow unhappy. Delete it.
 	@stow -t ~ $(PACKAGES)
 	@xrdb ~/.Xresources
 	@$(call cecho, $(GREEN),All Done! You may need to restart.)
